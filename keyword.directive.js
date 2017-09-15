@@ -2,12 +2,12 @@
  * Created by jonathan on 30/09/16.
  */
 
-var _keyWords = {
+let _keyWords = {
 
 };
 
 angular.module('common.directives')
-    .directive('keKeyword', function () {
+    .directive('keKeyword', () => {
 
         function link(scope, element, attrs) {
 
@@ -24,13 +24,13 @@ angular.module('common.directives')
         }
     })
     //this directive is needed if ke-keyword is called inside a ng-bind-html
-    .directive('compile', ['$compile', function compileDirective($compile) {
-        return function(scope, element, attrs) {
+    .directive('compile', ['$compile', ($compile) => {
+        return (scope, element, attrs) => {
             scope.$watch(
-                function(scope) {
+                (scope) => {
                     return scope.$eval(attrs.compile);
                 },
-                function(value) {
+                (value) => {
                     element.html(value);
                     $compile(element.contents())(scope);
                 }
